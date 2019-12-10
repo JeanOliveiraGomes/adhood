@@ -4,16 +4,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import com.adhood.enums.PerfilEnum;
 import com.adhood.util.GenericEntity;
 
 import lombok.Getter;
 import lombok.Setter;
-
 
 @Entity
 @Getter
@@ -32,7 +29,11 @@ public class Pessoa extends GenericEntity {
 	@OneToMany
 	private List<Veiculo> veiculo;
 	
-	PerfilEnum perfil;
+	@OneToMany
+	private List<Perfil> perfil;
+	
+	@OneToOne
+	private Password password;
 	
 	public Pessoa() {
 		super();
