@@ -13,7 +13,8 @@ public class PasswordEncode implements PasswordEncoder{
 
 	@Override
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {
-		return rawPassword.toString().equals(rawPassword);
+		System.out.println("password encoder" + rawPassword + "  "+ encodedPassword);
+		return rawPassword.toString().equals(encodedPassword);
 		
 	}
 

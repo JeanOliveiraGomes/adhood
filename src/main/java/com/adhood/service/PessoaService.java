@@ -27,15 +27,12 @@ public class PessoaService implements UserDetailsManager {
 		pessoa.setAccountNonLocked(true);
 		pessoa.setAccountNonExpired(true);
 		pessoa.setEnabled(true);
-		ArrayList<Perfil> d = new ArrayList<>();
-		d.add(new Perfil("USER"));
-		pessoa.setPerfil(d);
 		return pessoaRepository.save(pessoa);
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		salvarPessoa();
+		salvarPessoa();
 		pessoaRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Usuario ou senha invalidos"));
 		return pessoaRepository.findByEmail(username).get();
 	}
