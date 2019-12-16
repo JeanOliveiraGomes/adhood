@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.adhood.entity.Pessoa;
+import com.adhood.enums.PerfilEnum;
 import com.adhood.service.CustomUseDetailsManager;
 
 @SpringBootApplication
@@ -26,9 +27,13 @@ public class AdHoodApiApplication {
 	}
 	
 	private void initAdministrador(CustomUseDetailsManager pessoaService, PasswordEncoder passEncode) {
-		Pessoa pessoa = pessoaService.findByEmail("administrador@adhood.com");
-		if (Objects.isNull(pessoa)) {
-			pessoaService.salvarPessoa();
+		Pessoa administrador = pessoaService.findByEmail("administrador@adhood.com");
+		if (Objects.isNull(administrador)) {
+			pessoaService.salvarPessoa("administrador@adhood.com", PerfilEnum.ADMIN);
+		}
+		Pessoa operador = pessoaService.findByEmail("operador@adhood.com");
+		if (Objects.isNull(operador)) {
+			pessoaService.salvarPessoa("operador@adhood.com", PerfilEnum.OPERADOR);
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -22,7 +23,9 @@ import lombok.Setter;
 public class Pessoa extends GenericEntity{
 	
 	private String nome;
+	@Column(unique = true, nullable = false)
 	private String email;
+	@Column(unique = true)
 	private String cpf;
 	private LocalDateTime dataNascimento;
 	private String telefone;
@@ -33,6 +36,7 @@ public class Pessoa extends GenericEntity{
 	@OneToMany
 	private List<Veiculo> veiculo;
 	
+	@Column(nullable = false)
 	private ArrayList<Perfil> perfil;
 	
 	private String password;

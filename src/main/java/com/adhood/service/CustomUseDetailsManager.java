@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.adhood.configuracoes.security.ConverterPessoaToUserDetails;
 import com.adhood.entity.Perfil;
 import com.adhood.entity.Pessoa;
+import com.adhood.enums.PerfilEnum;
 import com.adhood.repository.PessoalRepository;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,18 +30,18 @@ public class CustomUseDetailsManager implements UserDetailsManager {
     @Autowired
     private ConverterPessoaToUserDetails converterPessoaToUserDetails;
 
-	public Pessoa salvarPessoa() {
+	public void salvarPessoa(String email, PerfilEnum perfil) {
 		Pessoa pessoa = new Pessoa();
-		pessoa.setNome("administrador@adhood.com");
-		pessoa.setEmail("administrador@adhood.com");
+		pessoa.setNome(email);
+		pessoa.setEmail(email);
 		pessoa.setAccountNonLocked(true);
 		pessoa.setAccountNonExpired(true);
 		pessoa.setPassword(passwordEncoder.encode("123"));
 		ArrayList<Perfil> roles = new ArrayList<>();
-		roles.add(new Perfil("ADMIN"));
+		roles.add(new Perfil(perfil.toString()));
 		pessoa.setPerfil(roles);
 		pessoa.setEnabled(true);
-		return pessoaRepository.save(pessoa);
+		pessoaRepository.save(pessoa);
 	}
 	
 	public Pessoa findByEmail(String email) {
