@@ -1,5 +1,6 @@
 package com.adhood.service;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,4 @@ public class PessoaService {
 		Pageable pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "nome");
 		return pessoaRepository.findByNomeContainingIgnoreCase(nome, pageable);
 	}
-
 }

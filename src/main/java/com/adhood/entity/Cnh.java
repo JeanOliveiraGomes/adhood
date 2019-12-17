@@ -15,6 +15,8 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Cnh extends GenericEntity {
+
+	private static final long serialVersionUID = -1550883663965699373L;
 	
 	private LocalDate validade;
 }

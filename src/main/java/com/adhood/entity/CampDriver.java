@@ -18,6 +18,8 @@ import lombok.Setter;
 @Entity
 public class CampDriver extends GenericEntity{
 	
+	private static final long serialVersionUID = -7383395667628487787L;
+	
 	private LocalDateTime dataInicio;
 	private LocalDateTime dataFim;
 	
@@ -26,4 +28,8 @@ public class CampDriver extends GenericEntity{
 	
 	@OneToOne
 	private Motorista motorista;
+	
+	public CampDriver () {
+		super();
+	}
 }

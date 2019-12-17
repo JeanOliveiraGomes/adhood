@@ -15,4 +15,12 @@ public class ClienteService {
 	public Cliente save(Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
+	
+	public Iterable<Cliente> findAll(){
+		return this.clienteRepository.findAll();
+	}
+	
+	public void delete(Long id) {
+		this.clienteRepository.deleteById(id);
+	}
 }

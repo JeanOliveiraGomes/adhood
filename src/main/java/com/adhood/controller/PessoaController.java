@@ -27,8 +27,8 @@ public class PessoaController {
 	PessoaService pessoaService;
 	
 	@GetMapping("/findByNome")
-	@PreAuthorize("hasAnyAuthority('ADMIN')")
-	public List<Pessoa> imprimir(@RequestParam("nome") String nome) {
+	@PreAuthorize("hasAnyAuthority('ADMIN','OPERADOR')")
+	public List<Pessoa> findByNome(@RequestParam("nome") String nome) {
 		return pessoaService.findByNome(nome);
 	}
 }

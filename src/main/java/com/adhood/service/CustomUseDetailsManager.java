@@ -1,6 +1,7 @@
 package com.adhood.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class CustomUseDetailsManager implements UserDetailsManager {
 		pessoa.setAccountNonExpired(true);
 		pessoa.setPassword(passwordEncoder.encode("123"));
 		ArrayList<Perfil> roles = new ArrayList<>();
-		roles.add(new Perfil(perfil.toString()));
+		roles.add(new Perfil(perfil.name()));
 		pessoa.setPerfil(roles);
 		pessoa.setEnabled(true);
 		pessoaRepository.save(pessoa);
@@ -69,8 +70,8 @@ public class CustomUseDetailsManager implements UserDetailsManager {
 		pessoa.setCredentialsNonExpired(user.isCredentialsNonExpired());
 		pessoa.setEnabled(user.isEnabled());
 		ArrayList<Perfil> perfil = pessoa.getPerfil();
-		perfil.add(new Perfil("USER"));
-		//pessoa.setPerfil(Arrays.asList(user.getAuthorities().toArray()));
+		perfil.add(new Perfil(PerfilEnum.USUARIO.toString()));
+		pessoa.setPerfil(perfil);
 		pessoaRepository.save(pessoa);
 	}
 
@@ -83,7 +84,8 @@ public class CustomUseDetailsManager implements UserDetailsManager {
 		pessoa.setAccountNonLocked(user.isAccountNonLocked());
 		pessoa.setCredentialsNonExpired(user.isCredentialsNonExpired());
 		pessoa.setEnabled(user.isEnabled());
-		//pessoa.setPerfil(Arrays.asList(user.getAuthorities().toArray()));
+		ArrayList<Perfil> perfil = (ArrayList<Perfil>) user.getAuthorities();
+		pessoa.setPerfil(perfil);
 		pessoaRepository.save(pessoa);
 	}
 

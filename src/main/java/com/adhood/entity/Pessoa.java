@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -22,6 +23,8 @@ import lombok.Setter;
 @Setter
 public class Pessoa extends GenericEntity{
 	
+	private static final long serialVersionUID = -939743917275900732L;
+	
 	private String nome;
 	@Column(unique = true, nullable = false)
 	private String email;
@@ -30,13 +33,12 @@ public class Pessoa extends GenericEntity{
 	private LocalDateTime dataNascimento;
 	private String telefone;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Endereco> endereco;
 	
 	@OneToMany
 	private List<Veiculo> veiculo;
 	
-	@Column(nullable = false)
 	private ArrayList<Perfil> perfil;
 	
 	private String password;
@@ -53,5 +55,8 @@ public class Pessoa extends GenericEntity{
 	
 	public Pessoa() {
 		super();
+		this.perfil = new ArrayList<>();
+		this.veiculo = new ArrayList<>();
+		this.endereco = new ArrayList<>();
 	}
 }

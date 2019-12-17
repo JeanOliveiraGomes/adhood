@@ -1,5 +1,6 @@
 package com.adhood.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,6 +20,8 @@ import lombok.Setter;
 @Entity(name = "motorista")
 public class Motorista extends Pessoa {
 
+	private static final long serialVersionUID = -3730506979396793917L;
+
 	private MotivoPeloQualDirigeEnum motivacao;
 	
 	@OneToOne
@@ -29,5 +32,11 @@ public class Motorista extends Pessoa {
 	
 	@OneToMany
 	private List<HistoricoLocalizacao> historicoLocalizacao;
+	
+	public Motorista () {
+		super();
+		this.campanha = new ArrayList<CampDriver>();
+		this.historicoLocalizacao = new ArrayList<>();
+	}
 	
 }

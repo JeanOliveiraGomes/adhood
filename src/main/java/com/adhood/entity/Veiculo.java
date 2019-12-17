@@ -17,6 +17,8 @@ import lombok.Setter;
 @Setter
 public class Veiculo extends GenericEntity {
 
+	private static final long serialVersionUID = -5233410385545715551L;
+	
 	private String placa;
 	private Integer anoFabricacao;
 	private String cor;
@@ -25,5 +27,9 @@ public class Veiculo extends GenericEntity {
 	@OneToOne
 	private Pessoa proprietario;
 	private MarcaVeiculoEnum marca;
+	
+	public Veiculo () {
+		super();
+	}
 	
 }

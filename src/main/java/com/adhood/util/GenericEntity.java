@@ -1,6 +1,7 @@
 package com.adhood.util;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.GeneratedValue;
@@ -18,8 +19,10 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter
 @Setter
-public abstract class GenericEntity{
-	
+public abstract class GenericEntity implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @GeneratedValue
     private Long id;
