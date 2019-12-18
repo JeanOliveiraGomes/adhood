@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,12 +24,13 @@ public class Cliente extends GenericEntity {
 	
 	private static final long serialVersionUID = -928008812012299985L;
 	
+	@Column(nullable = false)
 	private String nome;
 	private String segmento;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Endereco> endereco;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Pessoa consultor;
 	private boolean status;
 	

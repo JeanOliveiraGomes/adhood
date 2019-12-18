@@ -1,9 +1,7 @@
 package com.adhood.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.adhood.enums.CondicaoPinturaEnum;
 import com.adhood.enums.MarcaVeiculoEnum;
@@ -24,7 +22,7 @@ public class Veiculo extends GenericEntity {
 	private String cor;
 	private CondicaoPinturaEnum condicaoPintura;
 	
-	@OneToOne
+	@ManyToOne
 	private Pessoa proprietario;
 	private MarcaVeiculoEnum marca;
 	

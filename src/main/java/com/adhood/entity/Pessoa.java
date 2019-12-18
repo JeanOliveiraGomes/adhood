@@ -9,11 +9,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.adhood.util.GenericEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,8 +41,12 @@ public class Pessoa extends GenericEntity{
 	@OneToMany
 	private List<Veiculo> veiculo;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Motorista motorista;
+	
 	private ArrayList<Perfil> perfil;
 	
+	@JsonIgnore
 	private String password;
 	
 	private boolean isAccountNonExpired;

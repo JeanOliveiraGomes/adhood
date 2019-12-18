@@ -1,6 +1,11 @@
 package com.adhood.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.adhood.entity.Cliente;
@@ -22,5 +27,10 @@ public class ClienteService {
 	
 	public void delete(Long id) {
 		this.clienteRepository.deleteById(id);
+	}
+	
+	public List<Cliente> findByNome(String nome){
+		Pageable pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "nome");
+		return clienteRepository.findByNomeContainingIgnoreCase(nome, pageable);
 	}
 }

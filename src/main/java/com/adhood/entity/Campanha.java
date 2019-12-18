@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,13 +22,14 @@ public class Campanha extends GenericEntity {
 	
 	private static final long serialVersionUID = -7844178786806462516L;
 	
+	private String nome;
 	private LocalDateTime dataInicio; 
 	private LocalDateTime dataFim;
 	private Float valorCampanha;
 	private boolean status;
 	
 	@OneToMany
-	private List<Motorista> participantes;
+	private List<CampDriver> campDrive;
 
 	@OneToMany
 	private List<Cliente> cliente;
@@ -35,7 +37,6 @@ public class Campanha extends GenericEntity {
 	public Campanha() {
 		super();
 		this.cliente = new ArrayList<Cliente>();
-		this.participantes = new ArrayList<Motorista>();
 	}
 
 }

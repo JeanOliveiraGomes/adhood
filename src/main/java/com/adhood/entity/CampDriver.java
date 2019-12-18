@@ -2,10 +2,9 @@ package com.adhood.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.adhood.util.GenericEntity;
 
@@ -23,10 +22,10 @@ public class CampDriver extends GenericEntity{
 	private LocalDateTime dataInicio;
 	private LocalDateTime dataFim;
 	
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Campanha campanha;
 	
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Motorista motorista;
 	
 	public CampDriver () {

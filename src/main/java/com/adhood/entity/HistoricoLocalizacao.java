@@ -19,6 +19,8 @@ import lombok.Setter;
 @Entity
 public class HistoricoLocalizacao extends GenericEntity{
 
+	private static final long serialVersionUID = 2648910650843776341L;
+	
 	private LocalDateTime timestamp;
 	private String latitude;
 	private String logitude;

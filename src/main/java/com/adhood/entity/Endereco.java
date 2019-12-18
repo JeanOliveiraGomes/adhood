@@ -17,6 +17,8 @@ public class Endereco extends GenericEntity {
 
 	private static final long serialVersionUID = -8945666229445887747L;
 	
+	@ManyToOne
+	private Pessoa pessoa;
 	private String cep;
 	private String bairro;
 	private String complemento;
