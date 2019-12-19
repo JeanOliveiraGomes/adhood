@@ -29,18 +29,18 @@ public class Motorista extends GenericEntity {
 	
 	private MotivoPeloQualDirigeEnum motivacao;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Cnh cnh;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<CampDriver> campanha;
+	private List<CampDriver> campDriver;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<HistoricoLocalizacao> historicoLocalizacao;
 	
 	public Motorista () {
 		super();
-		this.campanha = new ArrayList<CampDriver>();
+		this.campDriver = new ArrayList<CampDriver>();
 		this.historicoLocalizacao = new ArrayList<>();
 	}
 	

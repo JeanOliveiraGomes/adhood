@@ -1,5 +1,6 @@
 package com.adhood.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,13 +33,13 @@ public class Pessoa extends GenericEntity{
 	private String email;
 	@Column(unique = true)
 	private String cpf;
-	private LocalDateTime dataNascimento;
+	private LocalDate dataNascimento;
 	private String telefone;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Endereco> endereco;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Veiculo> veiculo;
 	
 	@OneToOne(cascade = CascadeType.ALL)

@@ -1,5 +1,6 @@
 package com.adhood.entity;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -21,11 +22,10 @@ public class HistoricoLocalizacao extends GenericEntity{
 
 	private static final long serialVersionUID = 2648910650843776341L;
 	
-	private LocalDateTime timestamp;
+	private Timestamp timestamp;
 	private String latitude;
 	private String logitude;
 	
 	@ManyToOne
 	private Motorista motorista;
-
 }
