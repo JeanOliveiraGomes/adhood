@@ -1,6 +1,7 @@
 package com.adhood.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -28,7 +29,15 @@ public class PessoaService {
 	}
 	
 	public Pessoa save(Pessoa pessoa) {
-		pessoa.setPassword(passwordEncoder.encode("123"));
+		
+		if (Objects.nonNull(pessoa.getPassword()) && !pessoa.getPassword().equals("")) {			
+			pessoa.setPassword(passwordEncoder.encode(pessoa.getPassword()));			
+		}else if(Objects.nonNull(pessoa.getId())){
+			Pessoa pessoaAtual = pessoaRepository.findById(pessoa.getId()).orElse(null);
+			if (Objects.nonNull(pessoaAtual)) {
+				pessoa.setPassword(Objects.nonNull(pessoaAtual.getPassword())? pessoaAtual.getPassword() : passwordEncoder.encode("123"));				
+			}
+		}
 		pessoa.setAccountNonExpired(true);
 		pessoa.setAccountNonLocked(true);
 		pessoa.setEnabled(true);

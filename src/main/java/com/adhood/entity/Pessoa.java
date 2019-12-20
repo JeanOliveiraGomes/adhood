@@ -17,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.adhood.util.GenericEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -47,7 +49,7 @@ public class Pessoa extends GenericEntity{
 	
 	private ArrayList<Perfil> perfil;
 	
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 	
 	private boolean isAccountNonExpired;
