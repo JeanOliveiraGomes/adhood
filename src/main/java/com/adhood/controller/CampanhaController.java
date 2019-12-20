@@ -1,5 +1,7 @@
 package com.adhood.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,6 +41,12 @@ public class CampanhaController {
 	@PreAuthorize("hasAnyAuthority('ADMIN')")
 	public void delete(@RequestParam("id") Long id) {
 		campanhaService.delete(id);
+	}
+	
+	@GetMapping("/findByNome")
+	@PreAuthorize("hasAnyAuthority('ADMIN','OPERADOR')")
+	public List<Campanha> findByNome(@RequestParam("nome") String nome) {
+		return campanhaService.findByNome(nome);
 	}
 	
 }

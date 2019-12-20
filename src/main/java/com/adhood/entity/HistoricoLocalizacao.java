@@ -26,6 +26,4 @@ public class HistoricoLocalizacao extends GenericEntity{
 	private String latitude;
 	private String logitude;
 	
-	@ManyToOne
-	private Motorista motorista;
 }

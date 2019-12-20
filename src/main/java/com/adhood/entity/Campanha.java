@@ -6,9 +6,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.adhood.util.GenericEntity;
 
@@ -18,6 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class Campanha extends GenericEntity {
 	
 	private static final long serialVersionUID = -7844178786806462516L;
@@ -27,9 +31,6 @@ public class Campanha extends GenericEntity {
 	private LocalDateTime dataFim;
 	private Float valorCampanha;
 	private boolean status;
-	
-	@OneToMany
-	private List<CampDriver> campDrive;
 
 	@OneToMany
 	private List<Cliente> cliente;

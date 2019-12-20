@@ -21,8 +21,6 @@ public class Veiculo extends GenericEntity {
 	private String cor;
 	private CondicaoPinturaEnum condicaoPintura;
 	
-	@ManyToOne
-	private Pessoa proprietario;
 	private String marca;
 	
 	public Veiculo () {

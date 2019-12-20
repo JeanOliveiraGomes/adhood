@@ -1,13 +1,10 @@
 package com.adhood.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -36,12 +33,8 @@ public class Cliente extends GenericEntity {
 	
 	private PortClienteEnum porte;
 	
-	@OneToMany
-	private List<Campanha> campanhas;
-	
 	public Cliente() {
 		super();
-		this.campanhas = new ArrayList<Campanha>();
 	}
 
 }
