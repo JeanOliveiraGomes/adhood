@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -32,7 +33,7 @@ public class Campanha extends GenericEntity {
 	private Float valorCampanha;
 	private boolean status;
 
-	@OneToMany
+	@ManyToMany
 	private List<Cliente> cliente;
 	
 	public Campanha() {
