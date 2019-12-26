@@ -3,9 +3,7 @@ package com.adhood.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.adhood.util.GenericEntity;
 
@@ -18,12 +16,18 @@ import lombok.Setter;
 @Entity
 public class CampDriver extends GenericEntity{
 	
+	private static final long serialVersionUID = -7383395667628487787L;
+	
 	private LocalDateTime dataInicio;
 	private LocalDateTime dataFim;
 	
-	@OneToOne
+	@ManyToOne
 	private Campanha campanha;
 	
-	@OneToOne
-	private Motorista motorista;
+	@ManyToOne
+	private Pessoa pessoa;
+	
+	public CampDriver () {
+		super();
+	}
 }

@@ -2,9 +2,9 @@ package com.adhood.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -19,10 +19,13 @@ import lombok.Setter;
 @Setter
 public class Cliente extends GenericEntity {
 	
+	private static final long serialVersionUID = -928008812012299985L;
+	
+	@Column(nullable = false)
 	private String nome;
 	private String segmento;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Endereco> endereco;
 	@ManyToOne
 	private Pessoa consultor;
@@ -30,7 +33,8 @@ public class Cliente extends GenericEntity {
 	
 	private PortClienteEnum porte;
 	
-	@OneToMany
-	private List<Campanha> campanhas;
+	public Cliente() {
+		super();
+	}
 
 }

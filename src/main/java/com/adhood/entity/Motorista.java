@@ -1,15 +1,11 @@
 package com.adhood.entity;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.adhood.enums.MotivoPeloQualDirigeEnum;
+import com.adhood.util.GenericEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,17 +13,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "motorista")
-public class Motorista extends Pessoa {
+public class Motorista extends GenericEntity {
 
+	private static final long serialVersionUID = -3730506979396793917L;
+	
 	private MotivoPeloQualDirigeEnum motivacao;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Cnh cnh;
 	
-	@OneToMany
-	private List<CampDriver> campanha;
-	
-	@OneToMany
-	private List<HistoricoLocalizacao> historicoLocalizacao;
+	public Motorista () {
+		super();
+	}
 	
 }
