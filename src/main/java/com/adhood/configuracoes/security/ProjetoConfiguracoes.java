@@ -65,6 +65,11 @@ public class ProjetoConfiguracoes extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 			.antMatchers(
 					HttpMethod.GET,
+					"/source",
+					"/swagger-resources/**",
+					"/swagger-ui.html",
+					"/v2/api-docs",
+					"/webjars/**",
 					"/",
 					"/*.html",
 					"/favicon.ico",

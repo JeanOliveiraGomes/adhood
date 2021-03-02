@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,8 +17,9 @@ import com.adhood.configuracoes.security.CustomUserDetails;
 import com.adhood.configuracoes.security.jwt.CurrentUser;
 import com.adhood.configuracoes.security.jwt.JwtAuthenticationRequest;
 import com.adhood.configuracoes.security.jwt.JwtUtil;
-import com.adhood.entity.Pessoa;
 import com.adhood.service.CustomUseDetailsManager;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -36,6 +36,7 @@ public class SecurityController {
 	
 	
 	@PostMapping(value = "/api/auth")
+	@ApiOperation(value = "Cria um token")
 	public ResponseEntity<?> createAuthenticationToker(@RequestBody JwtAuthenticationRequest authenticationRequest) {
 		
 		final Authentication authentication = authenticationManager.authenticate(
@@ -49,6 +50,7 @@ public class SecurityController {
 	}
 	
 	@PostMapping(value = "/api/refresh")
+	@ApiOperation(value = "Atualiza um token")
 	public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request){
 		String token = request.getHeader("Authorization");
 		String username = jwtUtil.getUsernameFromToken(token);

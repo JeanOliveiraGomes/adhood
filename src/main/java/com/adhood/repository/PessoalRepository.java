@@ -13,4 +13,5 @@ import com.adhood.entity.Pessoa;
 public interface PessoalRepository extends CrudRepository<Pessoa, Long>{
 	Optional<Pessoa> findByEmail(String email);
 	List<Pessoa> findByNomeContainingIgnoreCase(String nome, Pageable pegeable);
+	List<Pessoa> findAll();
 }
