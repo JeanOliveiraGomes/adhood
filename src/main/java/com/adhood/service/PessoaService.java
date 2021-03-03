@@ -1,35 +1,48 @@
 package com.adhood.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.adhood.entity.Campanha;
+import com.adhood.dtos.PessoaDTO;
 import com.adhood.entity.Pessoa;
+import com.adhood.mapping.PessoaMapping;
 import com.adhood.repository.PessoalRepository;
+import com.adhood.util.ValidaCPF;
+
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class PessoaService {
 	
-	@Autowired
-	PessoalRepository pessoaRepository;
+	private final PessoalRepository pessoaRepository;
 	
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    
+    private final PessoaMapping pessoaMapping;
 	
-	public List<Pessoa> findByNome(String nome){
+	public List<PessoaDTO> findByNome(String nome){
+		List<PessoaDTO> pessoasDTO = new ArrayList<>(); 
 		Pageable pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "nome");
-		return pessoaRepository.findByNomeContainingIgnoreCase(nome, pageable);
+		List<Pessoa> pessoas = pessoaRepository.findByNomeContainingIgnoreCase(nome, pageable);
+		pessoas.forEach(d -> {
+			pessoasDTO.add(pessoaMapping.entidadeParaDTO(d));
+		});
+		return pessoasDTO;
 	}
 	
-	public Pessoa save(Pessoa pessoa) {
-		
+	public PessoaDTO save(PessoaDTO pessoaDTO) {
+		Pessoa pessoa = pessoaMapping.dtoParaEntidade(pessoaDTO);
+		if (!ValidaCPF.isCPF(pessoa.getCpf())) {
+			throw new IllegalArgumentException("CPF invalido.");
+		}
 		if (Objects.nonNull(pessoa.getPassword()) && !pessoa.getPassword().equals("")) {			
 			pessoa.setPassword(passwordEncoder.encode(pessoa.getPassword()));			
 		}else if(Objects.nonNull(pessoa.getId())){
@@ -42,11 +55,16 @@ public class PessoaService {
 		pessoa.setAccountNonLocked(true);
 		pessoa.setEnabled(true);
 		pessoa.setCredentialsNonExpired(true);
-		return pessoaRepository.save(pessoa);
+		return pessoaMapping.entidadeParaDTO(pessoaRepository.save(pessoa));
 	}
 	
-	public Iterable<Pessoa> findAll() {
-		return pessoaRepository.findAll();
+	public List<PessoaDTO> findAll() {
+		List<PessoaDTO> pessoasDTO = new ArrayList<>(); 
+		List<Pessoa> pessoas = pessoaRepository.findAll();
+		pessoas.forEach(d -> {
+			pessoasDTO.add(pessoaMapping.entidadeParaDTO(d));
+		});
+		return pessoasDTO;
 	}
 	
 	public void delete(Long id) {

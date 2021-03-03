@@ -2,7 +2,6 @@ package com.adhood.util;
 
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.EntityListeners;
@@ -31,7 +30,7 @@ public abstract class GenericEntity implements Serializable{
 
 	@Id
     @GeneratedValue
-    private Long id;
+    protected Long id;
 
     @CreatedBy
     protected String createdBy;

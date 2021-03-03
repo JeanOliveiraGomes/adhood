@@ -12,7 +12,6 @@ import com.adhood.configuracoes.security.CustomUserDetails;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtUtil implements Serializable {

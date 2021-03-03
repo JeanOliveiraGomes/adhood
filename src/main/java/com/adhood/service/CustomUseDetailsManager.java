@@ -1,7 +1,8 @@
 package com.adhood.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import com.adhood.entity.Pessoa;
 import com.adhood.enums.PerfilEnum;
 import com.adhood.repository.PessoalRepository;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,10 +31,12 @@ public class CustomUseDetailsManager implements UserDetailsManager {
     @Autowired
     private ConverterPessoaToUserDetails converterPessoaToUserDetails;
 
-	public void salvarPessoa(String email, PerfilEnum perfil) {
+	public void salvarPessoa(String email, PerfilEnum perfil, String cpf) {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome(email);
 		pessoa.setEmail(email);
+		pessoa.setCpf(cpf);
+		pessoa.setDataNascimento(LocalDate.of(1990, 1, 1));
 		pessoa.setAccountNonLocked(true);
 		pessoa.setAccountNonExpired(true);
 		pessoa.setPassword(passwordEncoder.encode("123"));

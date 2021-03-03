@@ -38,11 +38,11 @@ public class AdHoodApiApplication {
 	private void initAdministrador(CustomUseDetailsManager pessoaService, PasswordEncoder passEncode) {
 		Pessoa administrador = pessoaService.findByEmail("administrador@adhood.com");
 		if (Objects.isNull(administrador)) {
-			pessoaService.salvarPessoa("administrador@adhood.com", PerfilEnum.ADMIN);
+		pessoaService.salvarPessoa("administrador@adhood.com", PerfilEnum.ADMIN, "611.000.640-87");
 		}
 		Pessoa operador = pessoaService.findByEmail("operador@adhood.com");
 		if (Objects.isNull(operador)) {
-			pessoaService.salvarPessoa("operador@adhood.com", PerfilEnum.OPERADOR);
+			pessoaService.salvarPessoa("operador@adhood.com", PerfilEnum.OPERADOR, "325.661.030-70");
 		}
 	}
 
